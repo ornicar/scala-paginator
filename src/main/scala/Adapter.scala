@@ -3,12 +3,15 @@ package paginator
 trait Adapter[A] {
 
   /**
-   * Returns the number of results.
+   * Returns the total number of results.
    */
   def nbResults: Int
 
   /**
-   * Returns an slice of the results.
+   * Returns a slice of the results.
+
+   * @param   offset    The number of elements to skip, starting at zero
+   * @param   length    The maximum number of elements to return
    */
   def slice(offset: Int, length: Int): Seq[A]
 }
