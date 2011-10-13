@@ -51,10 +51,10 @@ trait PaginatorLike[A] {
   /**
    * Returns whether there is previous page or not.
    */
-  def hasPreviousPage: Boolean = None == previousPage
+  def hasPreviousPage: Boolean = None != previousPage
 
   /**
    * Returns whether there is next page or not.
    */
-  def hasNextPage: Boolean = None == nextPage
+  def hasNextPage: Boolean = None != nextPage
 }

@@ -2,8 +2,8 @@ package paginator
 
 class Paginator[A](
   val adapter: Adapter[A],
-  val maxPerPage: Int = 10,
-  val currentPage: Int = 1
+  val currentPage: Int = 1,
+  val maxPerPage: Int = 10
 ) extends PaginatorLike[A] {
 
   assert(maxPerPage > 0, "Max per page must be greater than zero")
