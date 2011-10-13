@@ -11,14 +11,16 @@ class Paginator[A](
 
   /**
    * Returns the results for the current page.
+   * The result is cached.
    */
-  def currentPageResults: Seq[A] =
+  lazy val currentPageResults: Seq[A] =
     adapter.slice((currentPage -1) * maxPerPage, maxPerPage)
 
   /**
    * Returns the number of results.
+   * The result is cached.
    */
-  def nbResults: Int = adapter.nbResults
+  lazy val nbResults: Int = adapter.nbResults
 
   /**
    * Returns the previous page.
