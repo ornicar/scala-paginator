@@ -5,7 +5,7 @@ object PaginatorBuild extends Build
 {
   lazy val core = Project("core", file("core")) settings(
     organization:= "com.github.ornicar",
-    name := "paginator",
+    name := "paginator-core",
     version := "1.0",
     scalaVersion := "2.9.1",
     libraryDependencies ++= Seq(
