@@ -1,13 +1,13 @@
-package paginator.test.adapter
+package com.github.ornicar.paginator.test.adapter
 
 import org.scalatest._
-import paginator._
-import paginator.adapter._
+import com.github.ornicar.paginator._
+import com.github.ornicar.paginator.adapter._
 
-class InMemoryTest extends FunSuite {
+class InMemoryAdapterTest extends FunSuite {
 
   test("Empty seq") {
-    val a = new InMemory(Seq())
+    val a = new InMemoryAdapter(Seq())
     assert(a.nbResults === 0)
     assert(a.slice(0, 10) === Seq())
     assert(a.slice(10, 10) === Seq())
@@ -15,7 +15,7 @@ class InMemoryTest extends FunSuite {
 
   test("Small seq") {
     val seq = 'a' to 'd'
-    val a = new InMemory(seq)
+    val a = new InMemoryAdapter(seq)
     assert(a.nbResults === 4)
     assert(a.slice(0, 10) === seq)
     assert(a.slice(0, 2) === ('a' to 'b'))
@@ -25,7 +25,7 @@ class InMemoryTest extends FunSuite {
   test("Medium seq of boxed chars") {
     case class Box(char: Char)
     def box(seq: Seq[Char]) = seq map { Box(_) }
-    val a = new InMemory(box('a' to 'z'))
+    val a = new InMemoryAdapter(box('a' to 'z'))
     assert(a.nbResults === 26)
     assert(a.slice(0, 10) === box('a' to 'j'))
     assert(a.slice(0, 2) === box('a' to 'b'))

@@ -1,4 +1,4 @@
-package paginator
+package com.github.ornicar.paginator
 
 trait Adapter[A] {
 

@@ -1,7 +1,7 @@
-package paginator
+package com.github.ornicar.paginator
 package adapter
 
-class InMemory[A](elems: Seq[A]) extends Adapter[A] {
+class InMemoryAdapter[A](elems: Seq[A]) extends Adapter[A] {
 
   def nbResults: Int = elems.length
 

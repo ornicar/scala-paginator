@@ -3,14 +3,26 @@ import Keys._
 
 object PaginatorBuild extends Build
 {
-  lazy val core = Project("core", file(".")) settings(
-    name := "Paginator",
-    version := "0.1",
+  lazy val core = Project("core", file("core")) settings(
+    organization:= "com.github.ornicar",
+    name := "paginator",
+    version := "1.0",
     scalaVersion := "2.9.1",
     libraryDependencies ++= Seq(
       "org.scala-tools.testing" %% "scalacheck" % "1.9",
       "org.scala-tools.testing" % "test-interface" % "0.5",
       "org.scalatest" % "scalatest_2.9.0" % "1.6.1"
+    )
+  )
+
+  lazy val salatAdapter = Project("salat-adapter", file("salat-adapter")) dependsOn(core) settings(
+    organization:= "com.github.ornicar",
+    name := "paginator-salat-adapter",
+    version := "1.0",
+    scalaVersion := "2.9.1",
+    libraryDependencies ++= Seq(
+      "com.mongodb.casbah" %% "casbah" % "2.1.5-1",
+      "com.novus" %% "salat-core" % "0.0.8-SNAPSHOT"
     )
   )
 

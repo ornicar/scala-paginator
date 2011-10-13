@@ -1,8 +1,8 @@
-package paginator.test.adapter
+package com.github.ornicar.paginator.test.adapter
 
 import org.scalatest._
-import paginator._
-import paginator.adapter.InMemory
+import com.github.ornicar.paginator._
+import com.github.ornicar.paginator.adapter.InMemoryAdapter
 
 class PaginatorTest extends FunSuite {
 
@@ -45,5 +45,5 @@ class PaginatorTest extends FunSuite {
   }
 
   private def makeAdapter[A](s: Seq[A] = Seq()) =
-    new InMemory[A](s)
+    new InMemoryAdapter[A](s)
 }
