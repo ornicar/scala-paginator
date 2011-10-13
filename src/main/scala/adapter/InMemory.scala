@@ -6,7 +6,7 @@ class InMemory[A](elems: Seq[A]) extends Adapter[A] {
   /**
    * Returns the number of results.
    */
-  def nbResults: elems.length
+  def nbResults: Int = elems.length
 
   /**
    * Returns an slice of the results.
