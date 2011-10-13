@@ -9,6 +9,7 @@ trait PaginatorLike[A] {
 
   /**
    * Returns the current page.
+   * 1 is the first page, not 0.
    */
   def currentPage: Int
 
