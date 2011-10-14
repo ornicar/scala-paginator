@@ -8,7 +8,7 @@ import com.mongodb.casbah.Imports._
 
 class SalatAdapter[A <: CaseClass, B <: Any](
   dao: DAO[A, B],
-  query: MongoDBObject
+  query: DBObject
 ) extends Adapter[A] {
 
   def nbResults: Int = dao.count(query).toInt
