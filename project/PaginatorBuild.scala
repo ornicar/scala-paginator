@@ -23,6 +23,10 @@ object PaginatorBuild extends Build
     libraryDependencies ++= Seq(
       "com.mongodb.casbah" %% "casbah" % "2.1.5-1",
       "com.novus" %% "salat-core" % "0.0.8-SNAPSHOT"
+    ),
+    resolvers ++= Seq(
+      "repo.novus rels" at "http://repo.novus.com/releases/",
+      "repo.novus snaps" at "http://repo.novus.com/snapshots/"
     )
   )
 
