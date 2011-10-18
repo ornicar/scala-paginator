@@ -3,7 +3,6 @@ package adapter
 
 import com.novus.salat.dao.DAO
 import com.novus.salat._
-import com.novus.salat.global._
 import com.mongodb.casbah.Imports._
 
 class SalatAdapter[A <: CaseClass, B <: Any](
