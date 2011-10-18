@@ -1,5 +1,9 @@
 package com.github.ornicar.paginator
 
+/**
+ * Defines the interface of a paginator
+ * without making asumptions about the implementation
+ */
 trait PaginatorLike[A] {
 
   /**

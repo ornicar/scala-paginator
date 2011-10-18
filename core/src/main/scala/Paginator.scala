@@ -1,5 +1,9 @@
 package com.github.ornicar.paginator
 
+/**
+ * Simple, cached implementation of PaginatorLike
+ * Based on adapters
+ */
 case class Paginator[A](
   val adapter: Adapter[A],
   val currentPage: Int = 1,
