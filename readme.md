@@ -41,15 +41,15 @@ val paginator = Paginator(adapter)
 Allows to paginate on any MongoDB query:
 
 ```scala
-import com.github.ornicar.paginator.SalatAdapter
+import com.github.ornicar.paginator.SalatAdapter                // I assume you also import the salat stuff
 
 case class Person(name: String)                                 // Say we have a basic model class
 
 object PersonDAO extends SalatDAO[Person, ObjectId](collection) // And a DAO for the model
 
-val query   = MongoDBObject("name" -> "Joe")                    // This is a normal salat query
+val query     = MongoDBObject("name" -> "Joe")                    // This is a normal salat query
 
-val adapter = SalatAdapter(PersonDAO, query)                    // And a shiny mongodb paginator adapter
+val adapter   = SalatAdapter(PersonDAO, query)                    // And a shiny mongodb paginator adapter
 
 val paginator = Paginator(adapter)
 ```
