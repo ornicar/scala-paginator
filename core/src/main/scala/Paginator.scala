@@ -1,6 +1,6 @@
 package com.github.ornicar.paginator
 
-class Paginator[A](
+case class Paginator[A](
   val adapter: Adapter[A],
   val currentPage: Int = 1,
   val maxPerPage: Int = 10
