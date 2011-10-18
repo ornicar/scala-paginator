@@ -1,6 +1,6 @@
 # Generic paginator for scala
 
-WIP. Will offer pagination for any data provider: DB, remote API, ...
+Offers pagination for any data provider: DB, remote API, ...
 
 Based on a simple adapter trait:
 
