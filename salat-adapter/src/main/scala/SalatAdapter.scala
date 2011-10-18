@@ -1,11 +1,10 @@
 package com.github.ornicar.paginator
-package adapter
 
 import com.novus.salat.dao.DAO
 import com.novus.salat._
 import com.mongodb.casbah.Imports._
 
-class SalatAdapter[A <: CaseClass, B <: Any](
+case class SalatAdapter[A <: CaseClass, B <: Any](
   dao: DAO[A, B],
   query: DBObject
 ) extends Adapter[A] {
