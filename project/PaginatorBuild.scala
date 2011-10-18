@@ -6,7 +6,7 @@ object PaginatorBuild extends Build
   lazy val core = Project("core", file("core")) settings(
     organization:= "com.github.ornicar",
     name := "paginator-core",
-    version := "1.0",
+    version := "1.1",
     scalaVersion := "2.9.1",
     libraryDependencies ++= Seq(
       "org.scala-tools.testing" %% "scalacheck" % "1.9",
@@ -18,7 +18,7 @@ object PaginatorBuild extends Build
   lazy val salatAdapter = Project("salat-adapter", file("salat-adapter")) dependsOn(core) settings(
     organization:= "com.github.ornicar",
     name := "paginator-salat-adapter",
-    version := "1.0",
+    version := "1.1",
     scalaVersion := "2.9.1",
     libraryDependencies ++= Seq(
       "com.mongodb.casbah" %% "casbah" % "2.1.5-1",
