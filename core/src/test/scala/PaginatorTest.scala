@@ -2,7 +2,7 @@ package com.github.ornicar.paginator.test.adapter
 
 import org.scalatest._
 import com.github.ornicar.paginator._
-import com.github.ornicar.paginator.adapter.InMemoryAdapter
+import com.github.ornicar.paginator.InMemoryAdapter
 
 class PaginatorTest extends FunSuite {
 
