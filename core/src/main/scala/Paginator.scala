@@ -4,14 +4,11 @@ package com.github.ornicar.paginator
  * Simple, cached implementation of PaginatorLike
  * Based on adapters
  */
-case class Paginator[A](
-  val adapter: Adapter[A],
-  val currentPage: Int = 1,
-  val maxPerPage: Int = 10
+class Paginator[A] private(
+  adapter: Adapter[A],
+  val currentPage: Int,
+  val maxPerPage: Int
 ) extends PaginatorLike[A] {
-
-  assert(maxPerPage > 0, "Max per page must be greater than zero")
-  assert(currentPage > 0, "Current page must be greater than zero")
 
   /**
    * Returns the results for the current page.
@@ -37,4 +34,21 @@ case class Paginator[A](
    */
   def nextPage: Option[Int] =
     if (currentPage == nbPages) None else Some(currentPage + 1)
+}
+
+object Paginator {
+
+  def apply[A](
+    adapter: Adapter[A],
+    currentPage: Int = 1,
+    maxPerPage: Int = 10
+  ): Either[String, Paginator[A]] =
+    if (currentPage <= 0) {
+      Left("Max per page must be greater than zero")
+    } else if (maxPerPage <= 0) {
+      Left( "Current page must be greater than zero")
+    } else {
+      Right(new Paginator(adapter, currentPage, maxPerPage))
+    }
+
 }
