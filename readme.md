@@ -10,18 +10,21 @@
 import com.github.ornicar.paginator._
 
 val adapter   = InMemoryAdapter('a' to 'z')
-val paginator = Paginator(adapter, currentPage = 2, maxPerPage = 5)
 
-paginator.nbResults           // 26
-paginator.nbPages             // 6
-paginator.currentPageResults  // Vector('f', 'g', 'h', 'i', 'j')
-paginator.currentPage         // 2
-paginator.maxPerPage          // 5
-paginator.hasToPaginate       // True
-paginator.hasNextPage         // True
-paginator.hasPreviousPage     // True
-paginator.nextPage            // Some(3)
-paginator.previousPage        // Some(1)
+for {
+  paginator <- Paginator(adapter, currentPage = 2, maxPerPage = 5).right
+} {
+  paginator.nbResults           // 26
+  paginator.nbPages             // 6
+  paginator.currentPageResults  // Vector('f', 'g', 'h', 'i', 'j')
+  paginator.currentPage         // 2
+  paginator.maxPerPage          // 5
+  paginator.hasToPaginate       // True
+  paginator.hasNextPage         // True
+  paginator.hasPreviousPage     // True
+  paginator.nextPage            // Some(3)
+  paginator.previousPage        // Some(1)
+}
 ```
 
 ## Adapters
@@ -34,6 +37,18 @@ This basic implementation of the adapter paginates a `Seq`. Example:
 val adapter = InMemoryAdapter('a' to 'z')
 
 val paginator = Paginator(adapter)
+```
+
+`paginator` is an instance of `Either[String, Paginator[A]]` where the left part is a possible error message.
+
+```scala
+Paginator(adapter) // Right[Paginator[A]]
+
+Paginator(adapter, 1, 10) // Right[Paginator[A]]
+
+Paginator(adapter, 0, 10) // Left("Max per page must be greater than zero")
+
+Paginator(adapter, 1, 0) // Left("Current page must be greater than zero")
 ```
 
 ### MongoDB Salat adapter
@@ -80,4 +95,4 @@ trait Adapter[A] {
 }
 ```
 
-Use the provided `InMemoryAdapter` and `SalatAdapter` as implementation examples.
+You may use the provided `InMemoryAdapter` and `SalatAdapter` as implementation examples.
