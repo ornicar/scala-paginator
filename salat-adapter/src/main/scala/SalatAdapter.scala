@@ -9,8 +9,8 @@ case class SalatAdapter[A <: CaseClass, B <: Any](
   query: DBObject
 ) extends Adapter[A] {
 
-  def nbResults: Int = dao.count(query).toInt
+  def nbResults: Int = dao count query toInt
 
   def slice(offset: Int, length: Int): Seq[A] =
-    dao.find(query).skip(offset).limit(length).toSeq
+    dao find query skip offset limit length toSeq
 }
