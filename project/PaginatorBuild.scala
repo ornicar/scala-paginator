@@ -3,6 +3,11 @@ import Keys._
 
 object PaginatorBuild extends Build
 {
+  lazy val iliazResolver = Some(Resolver.sftp(
+    "iliaz",
+    "scala.iliaz.com"
+  ) as ("scala_iliaz_com", Path.userHome / ".ssh" / "id_rsa"))
+
   lazy val core = Project("core", file("core")) settings(
     organization:= "com.github.ornicar",
     name := "paginator-core",
@@ -15,10 +20,7 @@ object PaginatorBuild extends Build
     ),
     scalacOptions += "-deprecation",
     scalacOptions += "-unchecked",
-    publishTo := Some(Resolver.sftp(
-      "iliaz",
-      "scala.iliaz.com"
-    ) as ("scala_iliaz_com", Path.userHome / ".ssh" / "id_rsa"))
+    publishTo := iliazResolver
   )
 
   lazy val salatAdapter = Project("salat-adapter", file("salat-adapter")) dependsOn(core) settings(
@@ -33,6 +35,9 @@ object PaginatorBuild extends Build
     resolvers ++= Seq(
       "repo.novus rels" at "http://repo.novus.com/releases/",
       "repo.novus snaps" at "http://repo.novus.com/snapshots/"
-    )
+    ),
+    scalacOptions += "-deprecation",
+    scalacOptions += "-unchecked",
+    publishTo := iliazResolver
   )
 }
