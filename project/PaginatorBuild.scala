@@ -3,12 +3,10 @@ import Keys._
 
 object BuildSettings {
   val buildOrganization = "com.github.ornicar"
-  val buildVersion = "1.2"
   val buildScalaVersion = "2.9.1"
 
   val buildSettings = Defaults.defaultSettings ++ Seq(
     organization := buildOrganization,
-    version := buildVersion,
     scalaVersion := buildScalaVersion,
     shellPrompt := ShellPrompt.buildShellPrompt,
     scalacOptions := Seq("-deprecation", "-unchecked"),
@@ -43,6 +41,7 @@ object PaginatorBuild extends Build
   lazy val core = Project("core", file("core"),
     settings = buildSettings ++ Seq(
       name := "paginator-core",
+      version := "1.3",
       resolvers := Seq(),
       publishTo := iliazPublish,
       libraryDependencies ++= Seq(scalacheck, test, scalatest)))
@@ -50,6 +49,7 @@ object PaginatorBuild extends Build
   lazy val salatAdapter = Project("salat-adapter", file("salat-adapter"),
     settings = buildSettings ++ Seq(
       name := "paginator-salat-adapter",
+      version := "1.2",
       resolvers := Seq(novus),
       publishTo := iliazPublish,
       libraryDependencies ++= Seq(casbah, salat))) dependsOn core
