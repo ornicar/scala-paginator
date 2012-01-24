@@ -14,4 +14,15 @@ trait Adapter[A] {
    * @param   length    The maximum number of elements to return
    */
   def slice(offset: Int, length: Int): Seq[A]
+
+  /**
+   * FUNCTOR INTERFACE
+   */
+
+  def map[B](f: A => B): Adapter[B] = {
+    new Adapter[B] {
+      def nbResults = Adapter.this.nbResults
+      def slice(offset: Int, length: Int) = Adapter.this.slice(offset, length) map f
+    }
+  }
 }

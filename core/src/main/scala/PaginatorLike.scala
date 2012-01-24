@@ -3,6 +3,7 @@ package com.github.ornicar.paginator
 /**
  * Defines the interface of a paginator
  * without making asumptions about the implementation
+ * Provides a functor interface (can be mapped over)
  */
 trait PaginatorLike[A] {
 
@@ -36,6 +37,12 @@ trait PaginatorLike[A] {
    * Returns the next page.
    */
   def nextPage: Option[Int]
+
+  /**
+   * FUNCTOR INTERFACE
+   */
+
+  def map[B](f: A => B): Paginator[B]
 
   /**
    * PRE-IMPLEMENTED METHODS
