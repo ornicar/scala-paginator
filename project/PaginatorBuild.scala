@@ -30,6 +30,8 @@ object Dependencies {
 
   val casbah = "com.mongodb.casbah" %% "casbah" % "2.1.5-1"
   val salat = "com.novus" %% "salat-core" % "0.0.8-SNAPSHOT"
+
+  val jdubext = "com.github.ornicar" %% "jdubext" % "1.1"
 }
 
 object PaginatorBuild extends Build
@@ -42,7 +44,6 @@ object PaginatorBuild extends Build
     settings = buildSettings ++ Seq(
       name := "paginator-core",
       version := "1.3",
-      resolvers := Seq(),
       publishTo := iliazPublish,
       libraryDependencies ++= Seq(scalacheck, test, scalatest)))
 
@@ -53,6 +54,14 @@ object PaginatorBuild extends Build
       resolvers := Seq(novus),
       publishTo := iliazPublish,
       libraryDependencies ++= Seq(casbah, salat))) dependsOn core
+
+  lazy val jdubextAdapter = Project("jdubext-adapter", file("jdubext-adapter"),
+    settings = buildSettings ++ Seq(
+      name := "paginator-jdubext-adapter",
+      version := "1.0",
+      resolvers := Seq(iliaz),
+      publishTo := iliazPublish,
+      libraryDependencies ++= Seq(jdubext))) dependsOn core
 }
 
 object ShellPrompt {
