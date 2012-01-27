@@ -13,8 +13,8 @@ class Paginator[A] private[paginator] (
    * Returns the results for the current page.
    * The result is cached.
    */
-  lazy val currentPageResults: Seq[A] =
-    adapter.slice((currentPage - 1) * maxPerPage, maxPerPage)
+  lazy val currentPageResults: List[A] =
+    adapter.slice((currentPage - 1) * maxPerPage, maxPerPage).toList
 
   /**
    * Returns the number of results.

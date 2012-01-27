@@ -21,7 +21,7 @@ trait PaginatorLike[A] {
   /**
    * Returns the results for the current page.
    */
-  def currentPageResults: Seq[A]
+  def currentPageResults: List[A]
 
   /**
    * Returns the number of results.
