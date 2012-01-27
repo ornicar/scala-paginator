@@ -43,7 +43,7 @@ object PaginatorBuild extends Build
   lazy val core = Project("core", file("core"),
     settings = buildSettings ++ Seq(
       name := "paginator-core",
-      version := "1.3",
+      version := "1.4",
       publishTo := iliazPublish,
       libraryDependencies ++= Seq(scalacheck, test, scalatest)))
 
