@@ -6,11 +6,12 @@ import com.mongodb.casbah.Imports._
 
 case class SalatAdapter[A <: CaseClass, B <: Any](
   dao: DAO[A, B],
-  query: DBObject
+  query: DBObject,
+  sort: DBObject = DBObject()
 ) extends Adapter[A] {
 
   def nbResults: Int = dao count query toInt
 
   def slice(offset: Int, length: Int): Seq[A] =
-    dao find query skip offset limit length toSeq
+    dao find query sort sort skip offset limit length toSeq
 }
