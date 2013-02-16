@@ -3,7 +3,7 @@ import Keys._
 
 object BuildSettings {
   val buildOrganization = "com.github.ornicar"
-  val buildScalaVersion = "2.9.1"
+  val buildScalaVersion = "2.10.0"
 
   val buildSettings = Defaults.defaultSettings ++ Seq(
     organization := buildOrganization,
@@ -14,7 +14,7 @@ object BuildSettings {
 }
 
 object Resolvers {
-  val novus = "repo.novus" at "http://repo.novus.com/snapshots/"
+  val novus = "repo.novus" at "http://oss.sonatype.org/content/repositories/snapshots"
   val sonatype = "sonatype" at "http://oss.sonatype.org/content/repositories/releases"
   val typesafe = "typesafe.com" at "http://repo.typesafe.com/typesafe/releases/"
   val iliaz = "iliaz.com" at "http://scala.iliaz.com/"
@@ -25,13 +25,13 @@ object Resolvers {
 }
 
 object Dependencies {
-  val scalacheck = "org.scala-tools.testing" %% "scalacheck" % "1.9" % "test"
+  val scalacheck = "org.scalacheck" %% "scalacheck" % "1.10.0" % "test"
   val test = "org.scala-tools.testing" % "test-interface" % "0.5" % "test"
-  val scalatest = "org.scalatest" %% "scalatest" % "1.6.1" % "test"
+  val scalatest = "org.scalatest" %% "scalatest" % "1.9.1" % "test"
 
-  val salat = "com.novus" %% "salat-core" % "1.9-SNAPSHOT"
+  val salat = "com.novus" %% "salat-core" % "1.9.2-SNAPSHOT"
 
-  val jdubext = "com.github.ornicar" %% "jdubext" % "1.1"
+//  val jdubext = "com.github.ornicar" %% "jdubext" % "1.2"
 }
 
 object PaginatorBuild extends Build {
@@ -44,7 +44,7 @@ object PaginatorBuild extends Build {
       name := "paginator-core",
       version := "1.6",
       publishTo := iliazPublish,
-      libraryDependencies := Seq(scalacheck, test, scalatest)))
+      libraryDependencies := Seq(scalacheck, test, scalatest, "org.scala-lang" % "scala-library" % "2.10.0")))
 
   lazy val salatAdapter = Project("salat-adapter", file("salat-adapter"),
     settings = buildSettings ++ Seq(
@@ -54,13 +54,13 @@ object PaginatorBuild extends Build {
       publishTo := iliazPublish,
       libraryDependencies ++= Seq(salat))) dependsOn core
 
-  lazy val jdubextAdapter = Project("jdubext-adapter", file("jdubext-adapter"),
+/*  lazy val jdubextAdapter = Project("jdubext-adapter", file("jdubext-adapter"),
     settings = buildSettings ++ Seq(
       name := "paginator-jdubext-adapter",
       version := "1.0",
       resolvers := Seq(iliaz),
       publishTo := iliazPublish,
-      libraryDependencies ++= Seq(jdubext))) dependsOn core
+      libraryDependencies ++= Seq(jdubext))) dependsOn core*/
 }
 
 object ShellPrompt {
